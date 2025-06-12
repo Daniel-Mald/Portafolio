@@ -21,9 +21,9 @@ namespace PortafolioAPI.Repositories
         {
             return GetAll();
         }
-        public ResponseWithMessage AddWork(AddWorkDTOForRepos dto)
+        public ResponseWithMessage<Work> AddWork(AddWorkDTOForRepos dto)
         {
-            ResponseWithMessage r = new();
+            ResponseWithMessage<Work> r = new();
             try
             {
                 if (!UserExist(dto.IdUser))
@@ -46,12 +46,14 @@ namespace PortafolioAPI.Repositories
                 }
                 else
                 {
-                    Insert(new Work()
+                    var w = context.Add(new Work()
                     {
                         IdUser = dto.IdUser,
                         Description = dto.Description,
                         Name = dto.Name
                     });
+                    context.SaveChanges();
+                    r.Data = w.Entity;
                     r.Success = true;
                 }
                 return r;

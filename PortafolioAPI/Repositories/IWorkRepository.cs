@@ -6,7 +6,7 @@ namespace PortafolioAPI.Repositories
 {
     public interface IWorkRepository
     {
-        ResponseWithMessage AddWork(AddWorkDTOForRepos dto);
+        ResponseWithMessage<Work> AddWork(AddWorkDTOForRepos dto);
         ResponseWithMessage DeleteWork(int idUser, int idWork);
         ResponseWithMessage<IEnumerable<Work>> GetMyWorks(int idUser);
         ResponseWithMessage<Work> GetWork(int id);

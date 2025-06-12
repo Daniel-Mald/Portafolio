@@ -117,6 +117,7 @@ namespace PortafolioAPI.Repositories
             };
             try
             {
+                Insert(u);
                 r.Success = true;
                 r.Message = "The user was created";
                 return r;
